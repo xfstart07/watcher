@@ -13,6 +13,7 @@ func ConnRedis() {
 	Redis = redis.NewClient(&redis.Options{
 		Addr: config.Config.RedisURI,
 		Password: config.Config.RedisPass,
+		DB: 10,
 	})
 
 	zlog.Sugar().Info(Redis.Ping().Result())
