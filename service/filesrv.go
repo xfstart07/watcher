@@ -73,7 +73,8 @@ func Store(filepath string) {
 // store redis
 func storeFile(fileName, md5 string) {
 	// FIXME: 默认7天
-	expire := 7*24*time.Hour
+	//expire := 7*24*time.Hour
+	expire := time.Duration(0)
 	Redis.Set(fileName, md5, expire)
 }
 
