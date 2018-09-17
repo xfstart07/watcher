@@ -1,6 +1,6 @@
-# 监控文件计算文件MD5值
+# 监控多个文件夹，计算文件的MD5值
 
-将文件夹中的文件的MD5计算出来，并存储Redis。
+将文件夹中的文件MD5值计算并存储入Redis。
 
 ### 部署运行
 
@@ -25,4 +25,3 @@ watch_path=/Users/x/golang/src/adserver-cloud, /Users/x/golang/src/adserver-clou
 ```text
 ./watcher
 ```
-

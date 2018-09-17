@@ -39,7 +39,6 @@ func WatchFile() {
 	}()
 
 	paths := config.Config.WatchPaths
-
 	for idx := range paths {
 		path := paths[idx]
 

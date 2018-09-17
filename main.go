@@ -24,7 +24,7 @@ func (p *program) Init(env svc.Environment) error {
 }
 
 func (p *program) Start() error {
-	log.Println("watch start...")
+	log.Println("app start...")
 
 	initApp()
 
@@ -32,7 +32,7 @@ func (p *program) Start() error {
 }
 
 func (p *program) Stop() error {
-	log.Println("watch stop...")
+	log.Println("app stop...")
 	return nil
 }
 

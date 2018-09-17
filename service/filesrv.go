@@ -68,6 +68,7 @@ func Store(filepath string) {
 		return
 	}
 
+	// FIXME: 文件的写入会触发多个事件，所以延迟1分钟等文件写入完成后执行计算
 	time.AfterFunc(1*time.Minute, func() {
 		md5, err := sumFile(filepath)
 		if err != nil {
