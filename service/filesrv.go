@@ -63,20 +63,22 @@ func Store(filepath string) {
 	files := strings.Split(filepath, "/")
 	fileName := files[len(files)-1]
 
-	//if exist, _ := Redis.Exists(fileName).Result(); exist > 0  {
-	//	zlog.Info("文件MD5已经存在")
-	//	return
-	//}
-
-	md5, err := sumFile(filepath)
-	if err != nil {
-		zlog.Error("计算MD5失败", zap.Error(err))
+	if exist, _ := Redis.Exists(fileName).Result(); exist > 0  {
+		zlog.Info("文件MD5已经存在")
+		return
 	}
 
-	// store redis
-	storeFile(fileName, md5)
+	time.AfterFunc(time.Duration(90), func() {
+		md5, err := sumFile(filepath)
+		if err != nil {
+			zlog.Error("计算MD5失败", zap.Error(err))
+		}
 
-	zlog.Info("MD5", zap.String("md5", md5))
+		// store redis
+		storeFile(fileName, md5)
+
+		zlog.Info("MD5", zap.String("md5", md5))
+	})
 }
 
 // store redis
