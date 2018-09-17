@@ -51,13 +51,22 @@ func Store(filepath string) {
 		zlog.Error("文件不存在", zap.String("path", filepath))
 		return
 	}
+
+	if exist, _ := Redis.Exists(filepath).Result(); exist > 0 {
+		zlog.Info("任务已经存在")
+		return
+	}
+
+	// 同一个路径，1分半钟只计算一次
+	Redis.SetNX(filepath, 1, time.Duration(90))
+
 	files := strings.Split(filepath, "/")
 	fileName := files[len(files)-1]
 
-	if exist, _ := Redis.Exists(fileName).Result(); exist > 0  {
-		zlog.Info("文件MD5已经存在")
-		return
-	}
+	//if exist, _ := Redis.Exists(fileName).Result(); exist > 0  {
+	//	zlog.Info("文件MD5已经存在")
+	//	return
+	//}
 
 	md5, err := sumFile(filepath)
 	if err != nil {
@@ -72,7 +81,7 @@ func Store(filepath string) {
 
 // store redis
 func storeFile(fileName, md5 string) {
-	// FIXME: 默认7天
+	// FIXME: 永久保存, 应该有过期时间
 	//expire := 7*24*time.Hour
 	expire := time.Duration(0)
 	Redis.Set(fileName, md5, expire)
