@@ -58,7 +58,7 @@ func Store(filepath string) {
 	}
 
 	// 同一个路径，1分半钟只计算一次
-	Redis.SetNX(filepath, 1, 2*time.Minute)
+	Redis.SetNX(filepath, 1, 1*time.Minute)
 
 	files := strings.Split(filepath, "/")
 	fileName := files[len(files)-1]
@@ -68,7 +68,7 @@ func Store(filepath string) {
 		return
 	}
 
-	time.AfterFunc(2*time.Minute, func() {
+	time.AfterFunc(1*time.Minute, func() {
 		md5, err := sumFile(filepath)
 		if err != nil {
 			zlog.Error("计算MD5失败", zap.Error(err))
