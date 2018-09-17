@@ -18,10 +18,20 @@ redis_pass=
 watch_path=/Users/x/golang/src/adserver-cloud, /Users/x/golang/src/adserver-cloud/app
 ``` 
 
-配置 Redis 路径和密码，监控的文件夹数组
+配置 Redis 服务地址和密码，`watch_path` 是监控的文件夹路径。
 
 ### 运行
 
 ```text
 ./watcher
 ```
+
+## 项目
+
+### 包版本管理
+
+使用 glide 管理包版本。
+
+### 日志
+
+使用 zap 日志库
