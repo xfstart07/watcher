@@ -15,8 +15,9 @@
 ```ini
 redis_uri=127.0.0.1:6379
 redis_pass=
-watch_path=/Users/x/golang/src/adserver-cloud, /Users/x/golang/src/adserver-cloud/app
-``` 
+redis_db=0
+watch_path=/Users/a1/golang/src/github.com/xfstart07/watcher
+```
 
 配置 Redis 服务地址和密码，`watch_path` 是监控的文件夹路径。
 
