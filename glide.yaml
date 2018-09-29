@@ -1,9 +1,0 @@
-package: github.com/xfstart07/watcher
-import:
-- package: github.com/fsnotify/fsnotify
-- package: github.com/go-ini/ini
-- package: github.com/go-redis/redis
-- package: github.com/judwhite/go-svc
-  subpackages:
-  - svc
-- package: go.uber.org/zap
