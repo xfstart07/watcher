@@ -31,7 +31,7 @@ watch_path=/Users/a1/golang/src/github.com/xfstart07/watcher
 
 ### 包版本管理
 
-使用 glide 管理包版本。
+使用 go mod 管理包版本。
 
 ### 日志
 
