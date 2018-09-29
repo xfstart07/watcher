@@ -12,11 +12,12 @@ var Config = Conf{}
 type Conf struct {
 	RedisURI string `ini:"redis_uri"`
 	RedisPass string `ini:"redis_pass"`
+	RedisDB int `ini:"redis_db"`
 	WatchPaths []string `ini:"watch_path"`
 }
 
 func Load() {
-	cfg, err := ini.Load("config/config.ini")
+	cfg, err := ini.Load("config.ini")
 	if err != nil {
 		panic(err)
 	}

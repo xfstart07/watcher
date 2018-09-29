@@ -23,17 +23,16 @@ func WatchFile() {
 					return
 				}
 				log.Println("event:", event)
+				zlog.Sugar().Info(event)
 				if event.Op&fsnotify.Write == fsnotify.Write {
-					log.Println("write")
+					zlog.Sugar().Info("write")
 				}
-				log.Printf("%v", event)
-
 				Store(event.Name)
 			case err, ok := <-watcher.Errors:
 				if !ok {
 					return
 				}
-				log.Println("error:", err)
+				zlog.Error("watchErr",zap.Error(err))
 			}
 		}
 	}()
@@ -46,5 +45,4 @@ func WatchFile() {
 			zlog.Error("监控文件夹失败", zap.Error(err))
 		}
 	}
-
 }
