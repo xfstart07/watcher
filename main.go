@@ -19,7 +19,7 @@ func main() {
 }
 
 func (p *program) Init(env svc.Environment) error {
-	log.Printf("is win service? %v\n", env.IsWindowsService())
+	log.Printf("is windowns service? %v\n", env.IsWindowsService())
 	return nil
 }
 
